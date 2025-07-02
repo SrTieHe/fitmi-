@@ -1,0 +1,91 @@
+<!-- templates/patients.html -->
+{% extends "base.html" %}
+
+{% block title %}Meus Pacientes - FitMi+{% endblock %}
+
+{% block content %}
+<div class="bg-white p-8 rounded-2xl shadow-2xl max-w-7xl mx-auto my-8 animate-fade-in">
+    <h1 class="text-4xl font-extrabold text-blue-800 mb-6 text-center drop-shadow-md">Meus Pacientes</h1>
+
+    <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+        <!-- Botão para adicionar novo paciente -->
+        <a href="{{ url_for('add_patient') }}" class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition-colors duration-300 shadow-md hover:shadow-lg text-center">
+            Adicionar Novo Paciente
+        </a>
+
+        <!-- Seção para o link de convite -->
+        <div class="w-full md:w-auto flex flex-col items-center md:items-end">
+            <label for="inviteLink" class="block text-gray-700 text-sm font-bold mb-2">Link de Convite para Pacientes:</label>
+            <div class="flex w-full">
+                <input type="text" id="inviteLink" value="{{ url_for('register', nutri_id=nutritionist.id, _external=True) }}" readonly
+                       class="shadow appearance-none border rounded-l-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-100 cursor-copy">
+                <button onclick="copyInviteLink()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-r-md transition-colors duration-300">Copiar</button>
+            </div>
+            <p id="copyMessage" class="text-green-600 text-sm mt-2 hidden">Link copiado!</p>
+        </div>
+    </div>
+
+    {% if patients %}
+    <div class="overflow-x-auto rounded-lg shadow-md border border-gray-200">
+        <table class="min-w-full bg-white">
+            <thead class="bg-gray-100 border-b border-gray-200">
+                <tr>
+                    <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider rounded-tl-lg">Nome Completo</th>
+                    <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Nome de Usuário</th>
+                    <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Email</th>
+                    <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider rounded-tr-lg">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in patients %}
+                <tr class="border-b border-gray-100 hover:bg-gray-50 last:border-b-0">
+                    <td class="py-3 px-4 whitespace-nowrap text-gray-800">{{ patient.full_name or 'N/A' }}</td>
+                    <td class="py-3 px-4 whitespace-nowrap text-gray-800">{{ patient.user.username }}</td>
+                    <td class="py-3 px-4 whitespace-nowrap text-gray-800">{{ patient.user.email }}</td>
+                    <td class="py-3 px-4 whitespace-nowrap">
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-bold mr-2">Ver Perfil</a>
+                        <a href="#" class="text-green-600 hover:text-green-800 font-bold mr-2">Criar Plano</a>
+                        <a href="{{ url_for('schedule_appointment') }}?patient_id={{ patient.id }}" class="text-yellow-600 hover:text-yellow-800 font-bold">Agendar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="text-gray-600 text-center py-12 text-lg">Você ainda não tem pacientes associados. Adicione um novo paciente ou compartilhe o link de convite!</p>
+    {% endif %}
+
+    <div class="mt-8 text-center">
+        <a href="{{ url_for('nutritionist_dashboard') }}" class="inline-block bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition-colors duration-300 shadow-md hover:shadow-lg">Voltar para o Dashboard</a>
+    </div>
+</div>
+
+<script>
+    function copyInviteLink() {
+        var copyText = document.getElementById("inviteLink");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+        document.execCommand("copy");
+
+        var msg = document.getElementById("copyMessage");
+        msg.classList.remove("hidden");
+        setTimeout(function(){
+            msg.classList.add("hidden");
+        }, 3000); // Esconde a mensagem após 3 segundos
+    }
+</script>
+
+<style>
+    /* Keyframes para a animação de fade-in */
+    @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* Aplica a animação ao container principal */
+    .animate-fade-in {
+        animation: fade-in 1s ease-out forwards;
+    }
+</style>
+{% endblock %}

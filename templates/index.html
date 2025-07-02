@@ -1,0 +1,50 @@
+<!-- templates/index.html -->
+{% extends "base.html" %}
+
+{% block title %}Bem-vindo ao FitMi+{% endblock %}
+
+{% block content %}
+<div class="text-center py-10">
+    <h1 class="text-5xl font-extrabold text-purple-700 mb-4">Bem-vindo ao FitMi+</h1>
+    <p class="text-xl text-gray-600 mb-8">Seu parceiro completo para uma vida mais saudável.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+        <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <h2 class="text-3xl font-semibold text-indigo-600 mb-4">Para Nutricionistas</h2>
+            <ul class="text-left text-gray-700 space-y-2">
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> Aplicativo exclusivo para o profissional</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> Redução de faltas com lembretes de consulta</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> Videoconferência e chat para interação com pacientes</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> Trabalhe onde e como quiser</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> Aumente sua visibilidade e atraia pacientes de todo o mundo</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> Acesse as principais informações dos pacientes</li>
+            </ul>
+        </div>
+        <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <h2 class="text-3xl font-semibold text-purple-600 mb-4">Para Pacientes</h2>
+            <ul class="text-left text-gray-700 space-y-2">
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> Plano alimentar na palma da mão</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> Chat e videoconferência com o nutri</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> Registro de refeições no diário alimentar</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> Alertas de hidratação e de refeições</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> Receitas, listas de compras e materiais complementares</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> Acompanhamento da sua evolução</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> Loja integrada dos produtos recomendados pelo seu nutri</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mt-12">
+        {% if not current_user.is_authenticated %}
+            <a href="{{ url_for('register') }}" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 duration-300 mr-4">
+                Comece Agora!
+            </a>
+            <a href="{{ url_for('login') }}" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 duration-300">
+                Já sou membro
+            </a>
+        {% else %}
+            <p class="text-lg text-gray-700">Explore seu dashboard para começar!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

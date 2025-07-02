@@ -1,0 +1,51 @@
+<!-- templates/add_food_item.html -->
+{% extends "base.html" %}
+
+{% block title %}Adicionar Alimento - FitMi+{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+    <h2 class="text-3xl font-bold text-center text-green-700 mb-6">Adicionar Novo Alimento</h2>
+    <form method="POST" action="{{ url_for('add_food_item') }}">
+        <div class="mb-4">
+            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nome do Alimento:</label>
+            <input type="text" id="name" name="name" required
+                   class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+        </div>
+        <div class="mb-4">
+            <label for="calories" class="block text-gray-700 text-sm font-bold mb-2">Calorias (kcal):</label>
+            <input type="number" step="0.1" id="calories" name="calories" required
+                   class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+        </div>
+        <div class="mb-4">
+            <label for="protein" class="block text-gray-700 text-sm font-bold mb-2">Proteína (g):</label>
+            <input type="number" step="0.1" id="protein" name="protein"
+                   class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+        </div>
+        <div class="mb-4">
+            <label for="carbohydrates" class="block text-gray-700 text-sm font-bold mb-2">Carboidratos (g):</label>
+            <input type="number" step="0.1" id="carbohydrates" name="carbohydrates"
+                   class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+        </div>
+        <div class="mb-4">
+            <label for="fats" class="block text-gray-700 text-sm font-bold mb-2">Gorduras (g):</label>
+            <input type="number" step="0.1" id="fats" name="fats"
+                   class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+        </div>
+        <div class="mb-6">
+            <label for="source" class="block text-gray-700 text-sm font-bold mb-2">Fonte (ex: USDA):</label>
+            <input type="text" id="source" name="source"
+                   class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+        </div>
+        <div class="flex items-center justify-between">
+            <button type="submit"
+                    class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline transition-colors duration-300 w-full">
+                Adicionar Alimento
+            </button>
+        </div>
+    </form>
+    <p class="text-center text-gray-600 text-sm mt-4">
+        <a href="{{ url_for('food_items') }}" class="text-green-600 hover:text-green-800 font-bold">Voltar para a Tabela de Alimentos</a>
+    </p>
+</div>
+{% endblock %}

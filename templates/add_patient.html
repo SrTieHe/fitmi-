@@ -1,0 +1,42 @@
+<!-- templates/add_patient.html -->
+{% extends "base.html" %}
+
+{% block title %}Adicionar Paciente - FitMi+{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+    <h2 class="text-3xl font-bold text-center text-blue-700 mb-6">Adicionar Novo Paciente</h2>
+    <form method="POST" action="{{ url_for('add_patient') }}">
+        <div class="mb-4">
+            <label for="full_name" class="block text-gray-700 text-sm font-bold mb-2">Nome Completo do Paciente:</label>
+            <input type="text" id="full_name" name="full_name" required
+                   class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        </div>
+        <div class="mb-4">
+            <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Nome de Usuário:</label>
+            <input type="text" id="username" name="username" required
+                   class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+            <input type="email" id="email" name="email" required
+                   class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        </div>
+        <div class="mb-6">
+            <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Senha Provisória:</label>
+            <input type="password" id="password" name="password" required
+                   class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <p class="text-xs text-gray-500">O paciente poderá alterar esta senha no primeiro login.</p>
+        </div>
+        <div class="flex items-center justify-between">
+            <button type="submit"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline transition-colors duration-300 w-full">
+                Adicionar Paciente
+            </button>
+        </div>
+    </form>
+    <p class="text-center text-gray-600 text-sm mt-4">
+        <a href="{{ url_for('patients') }}" class="text-blue-600 hover:text-blue-800 font-bold">Voltar para Meus Pacientes</a>
+    </p>
+</div>
+{% endblock %}

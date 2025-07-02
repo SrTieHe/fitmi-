@@ -1,0 +1,119 @@
+<!-- templates/nutritionist_dashboard.html -->
+{% extends "base.html" %}
+
+{% block title %}Dashboard do Nutricionista - FitMi+{% endblock %}
+
+{% block content %}
+<div class="bg-white p-8 rounded-2xl shadow-2xl max-w-7xl mx-auto my-10 animate-fade-in">
+    <h1 class="text-5xl font-extrabold text-indigo-800 mb-10 text-center drop-shadow-md">Bem-vindo(a), Nutri. {{ nutritionist.full_name or current_user.username }}!</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 p-4">
+        <!-- Cartão: Meus Pacientes -->
+        <div class="bg-gradient-to-br from-blue-100 to-blue-300 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 flex flex-col justify-between border-2 border-blue-400 animate-slide-in-left">
+            <div>
+                <h2 class="text-3xl font-bold text-blue-900 mb-4">Meus Pacientes</h2>
+                <p class="text-gray-800 mb-8 text-lg leading-relaxed">Gerencie os prontuários, planos alimentares e acompanhe o progresso detalhado dos seus pacientes.</p>
+            </div>
+            <a href="{{ url_for('patients') }}" class="inline-block bg-blue-700 hover:bg-blue-800 text-white font-extrabold py-4 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl text-center mt-6 transform hover:-translate-y-1">Ver Pacientes</a>
+        </div>
+
+        <!-- Cartão: Minha Agenda -->
+        <div class="bg-gradient-to-br from-green-100 to-green-300 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 flex flex-col justify-between border-2 border-green-400 animate-slide-in-up">
+            <div>
+                <h2 class="text-3xl font-bold text-green-900 mb-4">Minha Agenda</h2>
+                <p class="text-gray-800 mb-8 text-lg leading-relaxed">Visualize e gerencie seus agendamentos de consulta de forma eficiente e intuitiva.</p>
+            </div>
+            <a href="{{ url_for('appointments') }}" class="inline-block bg-green-700 hover:bg-green-800 text-white font-extrabold py-4 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl text-center mt-6 transform hover:-translate-y-1">Ver Agenda</a>
+        </div>
+
+        <!-- Cartão: Chat com Pacientes -->
+        <div class="bg-gradient-to-br from-yellow-100 to-yellow-300 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 flex flex-col justify-between border-2 border-yellow-400 animate-slide-in-right">
+            <div>
+                <h2 class="text-3xl font-bold text-yellow-900 mb-4">Chat com Pacientes</h2>
+                <p class="text-gray-800 mb-8 text-lg leading-relaxed">Comunique-se em tempo real com seus pacientes para tirar dúvidas e oferecer suporte.</p>
+            </div>
+            <a href="#" class="inline-block bg-yellow-700 hover:bg-yellow-800 text-white font-extrabold py-4 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl text-center mt-6 transform hover:-translate-y-1">Abrir Chat</a>
+        </div>
+
+        <!-- Cartão: Academy (Cursos) -->
+        <div class="bg-gradient-to-br from-red-100 to-red-300 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 flex flex-col justify-between border-2 border-red-400 animate-slide-in-left">
+            <div>
+                <h2 class="text-3xl font-bold text-red-900 mb-4">FitMi+ Academy</h2>
+                <p class="text-gray-800 mb-8 text-lg leading-relaxed">Crie e gerencie seus cursos com certificado e conteúdo exclusivo para educar seus pacientes.</p>
+            </div>
+            <a href="#" class="inline-block bg-red-700 hover:bg-red-800 text-white font-extrabold py-4 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl text-center mt-6 transform hover:-translate-y-1">Gerenciar Cursos</a>
+        </div>
+
+        <!-- Cartão: Tabela de Alimentos -->
+        <div class="bg-gradient-to-br from-purple-100 to-purple-300 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 flex flex-col justify-between border-2 border-purple-400 animate-slide-in-up">
+            <div>
+                <h2 class="text-3xl font-bold text-purple-900 mb-4">Tabela de Alimentos</h2>
+                <p class="text-gray-800 mb-8 text-lg leading-relaxed">Consulte e adicione alimentos à base de dados para criar planos alimentares precisos.</p>
+            </div>
+            <a href="{{ url_for('food_items') }}" class="inline-block bg-purple-700 hover:bg-purple-800 text-white font-extrabold py-4 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl text-center mt-6 transform hover:-translate-y-1">Ver Alimentos</a>
+        </div>
+
+        <!-- Cartão: Aumentar Visibilidade -->
+        <div class="bg-gradient-to-br from-gray-100 to-gray-300 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 flex flex-col justify-between border-2 border-gray-400 animate-slide-in-right">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Aumentar Visibilidade</h2>
+                <p class="text-gray-800 mb-8 text-lg leading-relaxed">Ferramentas para atrair mais pacientes globalmente e expandir sua prática.</p>
+            </div>
+            <a href="#" class="inline-block bg-gray-700 hover:bg-gray-800 text-white font-extrabold py-4 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl text-center mt-6 transform hover:-translate-y-1">Saiba Mais</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Keyframes para a animação de fade-in */
+    @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* Keyframes para a animação de slide-in-left */
+    @keyframes slide-in-left {
+        from { opacity: 0; transform: translateX(-50px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Keyframes para a animação de slide-in-up */
+    @keyframes slide-in-up {
+        from { opacity: 0; transform: translateY(50px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Keyframes para a animação de slide-in-right */
+    @keyframes slide-in-right {
+        from { opacity: 0; transform: translateX(50px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Aplica a animação ao container principal */
+    .animate-fade-in {
+        animation: fade-in 1s ease-out forwards;
+    }
+
+    /* Aplica as animações aos cartões com atrasos */
+    .animate-slide-in-left {
+        animation: slide-in-left 0.8s ease-out forwards;
+    }
+    .animate-slide-in-up {
+        animation: slide-in-up 0.8s ease-out forwards 0.2s; /* Atraso de 0.2s */
+    }
+    .animate-slide-in-right {
+        animation: slide-in-right 0.8s ease-out forwards 0.4s; /* Atraso de 0.4s */
+    }
+
+    /* Atrasos adicionais para a segunda linha de cartões */
+    .grid > div:nth-child(4).animate-slide-in-left {
+        animation-delay: 0.6s;
+    }
+    .grid > div:nth-child(5).animate-slide-in-up {
+        animation-delay: 0.8s;
+    }
+    .grid > div:nth-child(6).animate-slide-in-right {
+        animation-delay: 1s;
+    }
+</style>
+{% endblock %}
